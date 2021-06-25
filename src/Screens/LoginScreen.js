@@ -48,6 +48,8 @@ const LoginScreen = () => {
 
         if (user.is_MP) {
           history.push("/ddashboard");
+        } else if(user.is_insurance) {
+          history.push("/agentdashboard");
         } else {
           history.push("/dashboard");
         }

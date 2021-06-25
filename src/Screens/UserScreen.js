@@ -17,6 +17,7 @@ import DetailAccess from "../Pages/DetailAccess";
 import DDashboard from "../Pages/DDashboard";
 import DoctorsList from "../Pages/DoctorsList";
 import LabReportUpload from "../Pages/LabReportUpload";
+import AgentDashboard from "../InsuranceAgent/Pages/AgentDashboard";
 
 const UserScreen = () => {
   const { dispatch } = useContext(loginContext);
@@ -66,6 +67,8 @@ const UserScreen = () => {
           <Route exact path="/ddashboard" component={DDashboard} />
           <Route exact path="/doctorslist" component={DoctorsList} />
           <Route exact path="/error" component={ErrorScreen} />
+
+          <Route exact path="/agentdashboard" component={AgentDashboard} />
         </Switch>
       </div>
     </>

@@ -37,6 +37,9 @@ const HomeScreen = () => {
                   <Link to="/doctorregister" style={{textDecoration:"none"}}>  
                     <div className="hover-li">Doctor's Registration </div>
                   </Link>  
+                  <Link to="/insuranceagentregister" style={{textDecoration:"none"}}>  
+                    <div className="hover-li">Insurance Agent's Registration </div>
+                  </Link> 
                 </div>
               </div>  
             </div>

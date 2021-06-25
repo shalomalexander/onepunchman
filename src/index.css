@@ -643,7 +643,7 @@ p {
   opacity: 0;
   z-index: 10;
   top: 10px;
-  height: 100px;
+  height: auto;
   display: flex;
   flex-direction: column;
   
