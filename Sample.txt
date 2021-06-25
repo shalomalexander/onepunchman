@@ -1,1 +1,3 @@
-Hello
+GIT
+1. To show the origin name: git remote show origin
+2. To set the origin to a different url:  git remote set-url origin https://github.com/shalomalexander/onepunchman.git
