@@ -17,7 +17,12 @@ import DetailAccess from "../Pages/DetailAccess";
 import DDashboard from "../Pages/DDashboard";
 import DoctorsList from "../Pages/DoctorsList";
 import LabReportUpload from "../Pages/LabReportUpload";
+import EnrolledPolicy from "../Pages/EnrolledPolicy";
+
 import AgentDashboard from "../InsuranceAgent/Pages/AgentDashboard";
+import EnrollUser from "../InsuranceAgent/Pages/EnrollUser";
+import EnrolledUser from "../InsuranceAgent/Pages/EnrolledUser";
+import UserRequests from "../InsuranceAgent/Pages/UserRequests";
 
 const UserScreen = () => {
   const { dispatch } = useContext(loginContext);
@@ -45,6 +50,8 @@ const UserScreen = () => {
           <Route exact path="/insurance" component={Insurance} />
           <Route exact path="/prescription" component={Prescription} />
           <Route exact path="/labreport" component={LabReportUpload} />
+          <Route exact path="/enrolledpolicy" component={EnrolledPolicy} />
+
           <Route exact path="/prescribe" component={Prescribe} />
           <Route exact path="/finduser" component={FindUser} />
           <Route exact path="/prediction" component={Prediction} />
@@ -69,6 +76,9 @@ const UserScreen = () => {
           <Route exact path="/error" component={ErrorScreen} />
 
           <Route exact path="/agentdashboard" component={AgentDashboard} />
+          <Route exact path="/enrolluser" component={EnrollUser} />
+          <Route exact path="/enrolleduser" component={EnrolledUser} />
+          <Route exact path="/userrequests" component={UserRequests} />
         </Switch>
       </div>
     </>

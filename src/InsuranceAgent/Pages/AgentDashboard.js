@@ -1,4 +1,5 @@
 import RecentActivities from "../../components/RecentActivities"
+import AgentProfileCard from "./AgentProfileCard";
 
 
 const AgentDashboard = () => {
@@ -7,6 +8,7 @@ const AgentDashboard = () => {
     <div className="content-inner">
       <p className="bold-300">Dashboard</p>
       <hr />
+      <AgentProfileCard />
       <RecentActivities />
     </div>  
     </>

@@ -126,6 +126,43 @@ const Menu = () => {
                         <span className="material-icons">home</span> Dashboard
                       </Link>
                     </li>
+                    <li
+                      className={"li-font" + ("l2" === active ? " active" : "")}
+                      onClick={() => setActive("l2")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/userrequests"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> User Requests
+                      </Link>
+                    </li>
+                    <li
+                      className={"li-font" + ("l3" === active ? " active" : "")}
+                      onClick={() => setActive("l3")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/enrolluser"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> Enroll User
+                      </Link>
+                    </li>
+                    <li
+                      className={"li-font" + ("l4" === active ? " active" : "")}
+                      onClick={() => setActive("l4")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/enrolleduser"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> Enrolled User
+                      </Link>
+                    </li>
+                   
                   </div>
                 );
 
@@ -197,8 +234,8 @@ const Menu = () => {
                     </li>
 
                     <li
-                      className={"li-font" + ("l1" === active ? " active" : "")}
-                      onClick={() => setActive("l1")}
+                      className={"li-font" + ("l6" === active ? " active" : "")}
+                      onClick={() => setActive("l6")}
                     >
                       <Link
                         className="txt align-centre"
@@ -206,6 +243,18 @@ const Menu = () => {
                         style={{ textDecoration: "none" }}
                       >
                         <span className="material-icons">home</span> Lab Report
+                      </Link>
+                    </li>
+                    <li
+                      className={"li-font" + ("l7" === active ? " active" : "")}
+                      onClick={() => setActive("l7")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/enrolledpolicy"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> Enrolled Policy's
                       </Link>
                     </li>
                   </div>
