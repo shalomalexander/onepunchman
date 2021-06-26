@@ -162,6 +162,18 @@ const Menu = () => {
                         <span className="material-icons">home</span> Enrolled User
                       </Link>
                     </li>
+                    <li
+                      className={"li-font" + ("l5" === active ? " active" : "")}
+                      onClick={() => setActive("l5")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/potentialbuyer"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> Client Finder
+                      </Link>
+                    </li>
                    
                   </div>
                 );
@@ -255,6 +267,30 @@ const Menu = () => {
                         style={{ textDecoration: "none" }}
                       >
                         <span className="material-icons">home</span> Enrolled Policy's
+                      </Link>
+                    </li>
+                    <li
+                      className={"li-font" + ("l8" === active ? " active" : "")}
+                      onClick={() => setActive("l8")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/insurancerequest"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> Insurance Request
+                      </Link>
+                    </li>
+                    <li
+                      className={"li-font" + ("l9" === active ? " active" : "")}
+                      onClick={() => setActive("l9")}
+                    >
+                      <Link
+                        className="txt align-centre"
+                        to="/agentfinder"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <span className="material-icons">home</span> Agent Finder
                       </Link>
                     </li>
                   </div>

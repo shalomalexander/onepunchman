@@ -18,11 +18,15 @@ import DDashboard from "../Pages/DDashboard";
 import DoctorsList from "../Pages/DoctorsList";
 import LabReportUpload from "../Pages/LabReportUpload";
 import EnrolledPolicy from "../Pages/EnrolledPolicy";
+import InsuranceRequest from "../Pages/InsuranceRequest";
+import AgentFinder from "../Pages/AgentFinder";
 
 import AgentDashboard from "../InsuranceAgent/Pages/AgentDashboard";
 import EnrollUser from "../InsuranceAgent/Pages/EnrollUser";
 import EnrolledUser from "../InsuranceAgent/Pages/EnrolledUser";
 import UserRequests from "../InsuranceAgent/Pages/UserRequests";
+import PotentialBuyer from "../InsuranceAgent/Pages/PotentialBuyer";
+
 
 const UserScreen = () => {
   const { dispatch } = useContext(loginContext);
@@ -51,6 +55,8 @@ const UserScreen = () => {
           <Route exact path="/prescription" component={Prescription} />
           <Route exact path="/labreport" component={LabReportUpload} />
           <Route exact path="/enrolledpolicy" component={EnrolledPolicy} />
+          <Route exact path="/insurancerequest" component={InsuranceRequest} />
+          <Route exact path="/agentfinder" component={AgentFinder} />
 
           <Route exact path="/prescribe" component={Prescribe} />
           <Route exact path="/finduser" component={FindUser} />
@@ -79,6 +85,7 @@ const UserScreen = () => {
           <Route exact path="/enrolluser" component={EnrollUser} />
           <Route exact path="/enrolleduser" component={EnrolledUser} />
           <Route exact path="/userrequests" component={UserRequests} />
+          <Route exact path="/potentialbuyer" component={PotentialBuyer} />
         </Switch>
       </div>
     </>
