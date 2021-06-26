@@ -123,7 +123,7 @@ const Menu = () => {
                         to="/agentdashboard"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Dashboard
+                        <span className="material-icons">space_dashboard</span> Dashboard
                       </Link>
                     </li>
                     <li
@@ -135,7 +135,7 @@ const Menu = () => {
                         to="/userrequests"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> User Requests
+                        <span className="material-icons">announcement</span> User Requests
                       </Link>
                     </li>
                     <li
@@ -147,7 +147,7 @@ const Menu = () => {
                         to="/enrolluser"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Enroll User
+                        <span className="material-icons">person_add</span> Enroll User
                       </Link>
                     </li>
                     <li
@@ -159,7 +159,7 @@ const Menu = () => {
                         to="/enrolleduser"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Enrolled User
+                        <span className="material-icons">people</span> Enrolled User
                       </Link>
                     </li>
                     <li
@@ -171,7 +171,7 @@ const Menu = () => {
                         to="/potentialbuyer"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Client Finder
+                        <span className="material-icons">person_search</span> Client Finder
                       </Link>
                     </li>
                    
@@ -254,7 +254,7 @@ const Menu = () => {
                         to="/labreport"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Lab Report
+                        <span className="material-icons">receipt</span> Lab Report
                       </Link>
                     </li>
                     <li
@@ -266,7 +266,7 @@ const Menu = () => {
                         to="/enrolledpolicy"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Enrolled Policy's
+                        <span className="material-icons">view_list</span> Enrolled Policy's
                       </Link>
                     </li>
                     <li
@@ -278,7 +278,7 @@ const Menu = () => {
                         to="/insurancerequest"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Insurance Request
+                        <span className="material-icons">contact_support</span> Insurance Request
                       </Link>
                     </li>
                     <li
@@ -290,7 +290,7 @@ const Menu = () => {
                         to="/agentfinder"
                         style={{ textDecoration: "none" }}
                       >
-                        <span className="material-icons">home</span> Agent Finder
+                        <span className="material-icons">support_agent</span> Agent Finder
                       </Link>
                     </li>
                   </div>

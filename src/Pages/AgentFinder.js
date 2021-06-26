@@ -60,13 +60,12 @@ const AgentFinder = () => {
     setSelectedValue(Array.isArray(e) ? e.map((x) => x.value) : []);
   };
 
-
   return (
     <>
       <div className="content-inner">
         <div className="row my-3 py-2">
           <div className="col  my-3 py-2">
-            <h3>Insurence Agents : </h3>
+            <p className="bold-300">Agent Finder</p>
           </div>
           <div className="col-md-auto  my-3 py-2">
             <h3 className="float-right">Tags :</h3>

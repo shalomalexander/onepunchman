@@ -5,44 +5,44 @@ import { ProgressBar } from "react-bootstrap";
 const PotentialBuyer = () => {
   const patients = [
     {
-      name: "shalom",
-      contact: "213233432",
+      name: "Dr. Manoj Tiwari",
+      contact: "9873738859",
       healthScore: "40",
       tags: "cancer, accident",
     },
     {
-      name: "shalom",
-      contact: "213233432",
+      name: "Mr. Vikas Aggarwal",
+      contact: "9873738859",
       healthScore: "70",
       tags: "cancer, heart",
     },
     {
-      name: "shalom3",
-      contact: "213233432",
+      name: "Ms. Sunita Thakur",
+      contact: "9873738859",
       healthScore: "33",
       tags: "cancer, covid",
     },
     {
-      name: "shalom45",
-      contact: "213233432",
+      name: "Dr. Vijai Singh",
+      contact: "9873738859",
       healthScore: "60",
       tags: "covid, heart",
     },
     {
-      name: "shalome",
-      contact: "213233432",
+      name: "Dr. Pooja Tripathi",
+      contact: "9873738859",
       healthScore: "33",
-      tags: "cancer, covid",
+      tags: "cancer, covid, accident",
     },
     {
-      name: "shalom",
-      contact: "213233432",
+      name: "Mr Ferb",
+      contact: "9873738859",
       healthScore: "78",
       tags: "hiv, covid",
     },
     {
-      name: "shalom",
-      contact: "213233432",
+      name: "Ms. Chahat Sharma",
+      contact: "9873738859",
       healthScore: "33",
       tags: "cancer, accident",
     },
@@ -89,7 +89,7 @@ const PotentialBuyer = () => {
       <div className="content-inner">
         <div className="row my-3 py-2">
           <div className="col  my-3 py-2">
-            <h3>Potential Buyers </h3>
+          <p className="bold-300">Potential Buyers</p>
           </div>
           <div className="col-md-auto  my-3 py-2">
             <h3 className="float-right">Tags :</h3>
