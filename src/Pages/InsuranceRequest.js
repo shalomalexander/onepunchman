@@ -14,24 +14,26 @@ const InsuranceRequest = () => {
 
   const [pending, setPending] = useState([]);
 
+  const [agentIds, setAgentIds] = useState([]);
+
   const handleRequest = (id) => {
     setRequest((prevData) => {
       return { ...prevData, userId: state.user.id, agentId: id };
     });
 
-    console.log(request);
+    // console.log(request);
   };
 
   useEffect(() => {
     const postRequest = () => {
       axios
-        .post(url + "/api/v1/patienttoagentreqeust/", request)
+        .post(url + "/api/v1/patienttoagentrequest/", request)
         .then(toast.success("Request Done. Kindly wait for response"))
         .catch((error) => console.log(error.response));
 
       setRequest({});
 
-      console.log(request);
+      // console.log(request);
     };
 
     if (request.userId === state.user.id) {
@@ -53,14 +55,25 @@ const InsuranceRequest = () => {
     };
 
     const fetchPendingRequests = async () => {
-      let response = await axios.get(url + "/api/v1/patienttoagentreqeust/");
+      let response = await axios.get(url + "/api/v1/patienttoagentrequest/");
       setPending(response.data);
-      // console.log(response);
     };
 
     fetchAgents();
     fetchPendingRequests();
-  }, [url]);
+    let temp = [];
+    for(let i = 0; i < pending.length; i++) {
+      if(!pending[i].is_approved &&  !pending[i].is_declined) {
+        temp.push(pending[i].agentId);
+      }
+    }
+  
+    setAgentIds((d) => [...d, parseInt(temp)]);
+
+    return () => {
+      setAgentIds([]); // This worked for me
+    };
+  }, [url, pending]);
 
   return (
     <>
@@ -91,14 +104,20 @@ const InsuranceRequest = () => {
                     <td>{data.description}</td>
                     <td>{data.organization}</td>
                     <td>
-                      <div
-                        className="btn btn-warning"
-                        onClick={() => {
-                          handleRequest(data.user);
-                        }}
-                      >
-                        Request
-                      </div>
+                      {agentIds.includes(data.user) ? (
+                        <div className="btn btn-outline-primary">
+                          Already Requested
+                        </div>
+                      ) : (
+                        <div
+                          className="btn btn-warning"
+                          onClick={() => {
+                            handleRequest(data.user);
+                          }}
+                        >
+                          Request
+                        </div>
+                      )}
                     </td>
                   </tr>
                 );

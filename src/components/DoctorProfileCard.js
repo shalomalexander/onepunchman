@@ -57,8 +57,8 @@ const DoctorProfileCard = () => {
   return (
     <>
       <div className="DoctorProfileCard-wrapper">
-        <DProfileForm showModal={showModal} setShowModal={setShowModal} />
-        <table class="table">
+        <DProfileForm showModal={showModal} setShowModal={setShowModal} uploadedData={data}/>
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">

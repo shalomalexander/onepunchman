@@ -14,6 +14,13 @@ const AgentProfileCard = () => {
 
   const [data, setData] = useState({});
 
+  function isEmpty(ob) {
+    for (var i in ob) {
+      return false;
+    }
+    return true;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       let response = null;
@@ -43,13 +50,23 @@ const AgentProfileCard = () => {
             <h3>Profile Information</h3>
           </div>
           <div className="col-3">
-            <button onClick={toggleShowModal} className="btn btn-primary">
-              Edit
-            </button>
+            {isEmpty(data) ? (
+              <>
+                <button onClick={toggleShowModal} className="btn btn-primary">
+                  Add
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={toggleShowModal} className="btn btn-primary">
+                  Edit
+                </button>
+              </>
+            )}
           </div>
         </div>
         <hr />
-        <AgentProfileForm showModal={showModal} setShowModal={setShowModal} />
+        <AgentProfileForm showModal={showModal} setShowModal={setShowModal} uploadedData={data} />
         <table className="table">
           <thead>
             <tr>
@@ -58,30 +75,26 @@ const AgentProfileCard = () => {
             </tr>
           </thead>
           <tbody>
-                <tr>
-                  <td>License Number</td>
-                  <td>{data["licenseNumber"]}</td>
-                </tr>
-                <tr>
-                  <td>Mobile Number</td>
-                  <td> {data["mobileNumber"]}</td>
-                </tr>
-                <tr>
-                  <td>Description</td>
-                  <td>{data["description"]}</td>
-                </tr>
-                <tr>
-                  <td>Address</td>
-                  <td>{data["address"]}</td>
-                </tr>
-                <tr>
-                  <td>Organization</td>
-                  <td>{data["organization"]}</td>
-                </tr>
-                <tr>
-                  <td>Tags </td>
-                  <td>{data["tags"]}</td>
-                </tr>
+            <tr>
+              <td>License Number</td>
+              <td>{data["licenseNumber"]}</td>
+            </tr>
+            <tr>
+              <td>Mobile Number</td>
+              <td> {data["mobileNumber"]}</td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>{data["description"]}</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>{data["address"]}</td>
+            </tr>
+            <tr>
+              <td>Organization</td>
+              <td>{data["organization"]}</td>
+            </tr>
           </tbody>
         </table>
       </div>

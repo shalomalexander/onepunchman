@@ -27,7 +27,6 @@ import EnrolledUser from "../InsuranceAgent/Pages/EnrolledUser";
 import UserRequests from "../InsuranceAgent/Pages/UserRequests";
 import PotentialBuyer from "../InsuranceAgent/Pages/PotentialBuyer";
 
-
 const UserScreen = () => {
   const { dispatch } = useContext(loginContext);
 

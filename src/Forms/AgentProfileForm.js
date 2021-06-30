@@ -1,22 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import { loginContext, urlContext } from "../App";
 import axios from "axios";
 import Select from "react-select";
 import toast from "react-hot-toast";
 
-const AgentProfileForm = ({ showModal, setShowModal }) => {
+const AgentProfileForm = ({ showModal, setShowModal, uploadedData }) => {
   const url = useContext(urlContext);
   const { state } = useContext(loginContext);
   const [data, setData] = useState({
-    user: "",
-    name: "",
-    licenseNumber: "",
-    description: "",
-    mobileNumber: "",
-    address: "",
-    tags: "",
-    organization: "",
+    user: uploadedData ? uploadedData.user : "",
+    name: uploadedData ? uploadedData.name : "",
+    licenseNumber: uploadedData ? uploadedData.licenseNumber : "",
+    description: uploadedData ? uploadedData.description : "",
+    mobileNumber: uploadedData ? uploadedData.mobileNumber : "",
+    address: uploadedData ? uploadedData.address : "",
+    tags: uploadedData ? uploadedData.tags : "",
+    organization: uploadedData ? uploadedData.organization : "",
   });
 
   const tags = [
@@ -53,9 +53,8 @@ const AgentProfileForm = ({ showModal, setShowModal }) => {
 
     setData((prevData) => {
       let str = arr.join(", ");
-      return {...prevData, "tags": str };
+      return { ...prevData, tags: str };
     });
-
   };
 
   const handleInputChange = (event) => {
@@ -76,22 +75,44 @@ const AgentProfileForm = ({ showModal, setShowModal }) => {
     if (event) {
       event.preventDefault();
     }
-    console.log(data);
+    console.log(event);
 
-    await axios
-      .post(url + "/api/v1/insuranceagentlist/", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token " + state.token,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        toast.success("Successfull");
-        window.location.reload(false);
-      })
-      .catch((error) => console.log(error.response.request));
+    if (event.target.id === "POST") {
+      await axios
+        .post(url + "/api/v1/insuranceagentlist/", data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + state.token,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success("Successfull");
+          window.location.reload(false);
+        })
+        .catch((error) => console.log(error.response.request));
+      console.log("POST");
+    } else {
+      await axios
+        .patch(url + "/api/v1/insuranceagent/" + uploadedData.user, data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + state.token,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success("Successfull");
+          window.location.reload(false);
+        })
+        .catch((error) => console.log(error.response.request));
+      console.log("PATCH");
+    }
   };
+
+  useEffect(() => {
+    setData(uploadedData);
+  }, [uploadedData]);
 
   return (
     <>
@@ -108,7 +129,7 @@ const AgentProfileForm = ({ showModal, setShowModal }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="input-row">
               <div className="col ">
                 <label>Full Name:</label>
@@ -186,26 +207,28 @@ const AgentProfileForm = ({ showModal, setShowModal }) => {
             <div className="input-row">
               <div className="col">
                 <label>Tags</label>
-               
-                  <Select
-                    className="dropdown"
-                    placeholder="Select Option"
-                    name="tags"
-                    value = {tags.filter((obj) =>
-                      selectedValue.includes(obj.value)
-                    )} // set selected values
-                    options={tags} // set list of the data
-                    onChange={handleChange} // assign onChange function
-                    isMulti
-                    isClearable
-                  />
-               
+
+                <Select
+                  className="dropdown"
+                  placeholder="Select Option"
+                  name="tags"
+                  value={tags.filter((obj) =>
+                    selectedValue.includes(obj.value)
+                  )} // set selected values
+                  options={tags} // set list of the data
+                  onChange={handleChange} // assign onChange function
+                  isMulti
+                  isClearable
+                />
               </div>
             </div>
             <hr />
             <div className="input-row">
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-primary" type="submit" name="POST" id="POST" onClick={handleSubmit}>
                 Submit
+              </button>
+              <button className="btn btn-primary" type="submit" name="PATCH" id="PATCH" onClick={handleSubmit}>
+                Update
               </button>
             </div>
           </form>

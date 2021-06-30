@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { urlContext } from "../../App";
 import registrationimg from "../../assets/Images/HEALHUB-ABOUT.png";
+import toast from "react-hot-toast";
+import validator from "validator";
 
 const InsuranceRegisterScreen = () => {
   const url = useContext(urlContext);
@@ -28,11 +30,21 @@ const InsuranceRegisterScreen = () => {
     console.log({ ...input });
   };
 
+  const validatePhoneNumber = (number) => {
+    const isValidPhoneNumber = validator.isMobilePhone(number);
+    return isValidPhoneNumber;
+  };
+
   const handleSubmit = async (event) => {
     if (event) {
       event.preventDefault();
     }
     setInput(input);
+
+    if (!validatePhoneNumber(input.phone_number)) {
+      toast.error("Phone Number is not valid.");
+      return;
+    }
     await axios
       .post(url + "/api/auth/register", input, {
         headers: {
@@ -45,10 +57,13 @@ const InsuranceRegisterScreen = () => {
           "phone_number",
           response.data.user["phone_number"]
         );
+        console.log("Registered");
+        history.push("/otpscreen");
       })
-      .catch((error) => console.log(error.response.request._response));
-    console.log("Registered");
-    history.push("/otpscreen");
+      .catch((error) => {
+        console.log(error.response.data["detail"]);
+        toast.error(error.response.data["detail"]);
+      });
   };
 
   return (
@@ -59,10 +74,10 @@ const InsuranceRegisterScreen = () => {
           <div className="auth-inner">
             <form onSubmit={handleSubmit}>
               <h5 className="align-centre roboto-font">
-                <span class="material-icons">person_add </span> Insurance Agent's
-                Registeration
+                <span className="material-icons">person_add </span> Insurance
+                Agent's Registeration
               </h5>
-              <div class="alert alert-warning" role="alert">
+              <div className="alert alert-warning" role="alert">
                 Kindly avoid registeration, if you are not a Insurance Agent.
               </div>
               <div className="form-group">
@@ -74,6 +89,7 @@ const InsuranceRegisterScreen = () => {
                   name="username"
                   onChange={onChangeHandler}
                   value={input.username}
+                  required
                 />
               </div>
 
@@ -86,6 +102,7 @@ const InsuranceRegisterScreen = () => {
                   name="email"
                   onChange={onChangeHandler}
                   value={input.email}
+                  required
                 />
               </div>
 
@@ -98,6 +115,8 @@ const InsuranceRegisterScreen = () => {
                   name="phone_number"
                   onChange={onChangeHandler}
                   value={input.phone_number}
+                  maxLength="10"
+                  required
                 />
               </div>
 
@@ -110,6 +129,7 @@ const InsuranceRegisterScreen = () => {
                   name="password"
                   onChange={onChangeHandler}
                   value={input.password}
+                  required
                 />
               </div>
               <button type="submit" className="btn btn-dark btn-sm">

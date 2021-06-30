@@ -1,8 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { urlContext } from "../App";
 import otp_img from "../assets/Images/otp_vector.jpg";
+import toast from "react-hot-toast";
 
 const OTPScreen = () => {
   const url = useContext(urlContext);
@@ -13,6 +14,10 @@ const OTPScreen = () => {
     otp: "",
   });
 
+  const [counter, setCounter] = useState(0);
+  let btnRef = useRef();
+  const [showResend, setShowResend] = useState(false);
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setOtp((prevData) => {
@@ -21,14 +26,14 @@ const OTPScreen = () => {
     console.log({ ...otp });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
     }
 
     console.log(otp);
 
-    await axios
+    axios
       .post(url + "/api/auth/verify_otp", otp, {
         headers: {
           "Content-Type": "application/json",
@@ -36,9 +41,45 @@ const OTPScreen = () => {
       })
       .then((response) => {
         console.log(response);
+        history.push("/login");
+      })
+      .catch((error) => {
+        console.log(error.response);
+        toast.error(error.response.data["detail"]);
       });
+  };
 
-    history.push("/login");
+  const resendOTP = (event) => {
+   
+    setCounter((counter) => counter + 1);
+    console.log(counter);
+    if (counter > 1) {
+      if (btnRef.current) {
+        btnRef.current.setAttribute("disabled", "disabled");
+      }
+      toast.error("Kindly try to register with a phone number with network");
+    } else {
+      toast.success(
+        "An OTP has been sent again. Kindly take your phone to a place with good network.",
+        {
+          duration: 5000,
+          icon: "👏",
+        }
+      );
+    }
+    // axios
+    //   .post(url + "/api/auth/resend_otp", otp, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response);
+    //     toast.error(error.response.data["detail"]);
+    //   });
   };
 
   return (
@@ -47,6 +88,7 @@ const OTPScreen = () => {
         <p className="bold-300">
           <span className=" material-icons">lock</span>OTP
         </p>
+
         <form onSubmit={handleSubmit}>
           <div className="align-centre">
             <p className="bold-1 font-small">
@@ -75,6 +117,22 @@ const OTPScreen = () => {
             SUBMIT
           </button>
         </form>
+        <hr />
+        <p>
+          Did not recieve OTP ?
+          <strong onClick={() => setShowResend(true)}> Click here</strong>
+        </p>
+        {showResend ? (
+          <button
+            ref={btnRef}
+            className="btn btn-outline-primary"
+            onClick={resendOTP}
+          >
+            Resent OTP
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

@@ -162,7 +162,7 @@ const Menu = () => {
                         <span className="material-icons">people</span> Enrolled User
                       </Link>
                     </li>
-                    <li
+                    {/* <li
                       className={"li-font" + ("l5" === active ? " active" : "")}
                       onClick={() => setActive("l5")}
                     >
@@ -173,7 +173,7 @@ const Menu = () => {
                       >
                         <span className="material-icons">person_search</span> Client Finder
                       </Link>
-                    </li>
+                    </li> */}
                    
                   </div>
                 );
@@ -281,7 +281,7 @@ const Menu = () => {
                         <span className="material-icons">contact_support</span> Insurance Request
                       </Link>
                     </li>
-                    <li
+                    {/* <li
                       className={"li-font" + ("l9" === active ? " active" : "")}
                       onClick={() => setActive("l9")}
                     >
@@ -292,7 +292,7 @@ const Menu = () => {
                       >
                         <span className="material-icons">support_agent</span> Agent Finder
                       </Link>
-                    </li>
+                    </li> */}
                   </div>
                 );
 

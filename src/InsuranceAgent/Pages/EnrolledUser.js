@@ -1,11 +1,11 @@
 import { useEffect, useContext, useState } from "react";
-import {urlContext } from "../../App";
+import {urlContext, loginContext } from "../../App";
 // import toast from "react-hot-toast";
 import axios from "axios";
 
 const EnrolledUsers = () => {
   const url = useContext(urlContext);
-//   const { state } = useContext(loginContext);
+  const { state } = useContext(loginContext);
 
   const [data, setData] = useState([]);
   const [user, setUser] = useState({
@@ -19,7 +19,7 @@ const EnrolledUsers = () => {
 
     setUser(response.data);
 
-    console.log(user);
+    // console.log(user);
   };
 
   useEffect(() => {
@@ -29,11 +29,11 @@ const EnrolledUsers = () => {
         .catch((error) => {
           console.log(error);
         });
-      setData(response.data);
+      setData(response.data.filter(d=> d.agentId === state.user.id));
      
     };
     fetchData();
-  }, [url]);
+  }, [url, state]);
   
   return (
     <>
@@ -86,7 +86,7 @@ const EnrolledUsers = () => {
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"

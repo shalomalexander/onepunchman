@@ -2,13 +2,18 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { loginContext } from "./App";
 
+
+
 const Navbar = () => {
   const { state, dispatch } = useContext(loginContext);
+
+
 
   const logoutHandler = () => {
     dispatch({
       type: "LOGOUT",
     });
+ 
   };
 
   const [click, setClick] = useState(false);

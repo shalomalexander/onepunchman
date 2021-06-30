@@ -101,6 +101,7 @@ const LabReportUpload = () => {
         </div>
       </div>
       <hr></hr>
+      
       <div className="lab-report-upload-file-container my-3 py-2  table-responsive">
         <table className="table table-bordered">
           <thead className="thead-dark">
@@ -122,27 +123,30 @@ const LabReportUpload = () => {
                   <td>{uploadReport.report_status}</td>
                   <td>{uploadReport.created_on}</td>
                   <td>{uploadReport.tag}</td>
-                  <td className="row">
-                    <div className="col-sm-6">
-                      <a
-                        className="btn btn-primary col-sm-6"
-                        href={uploadReport.report}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        View
-                      </a>
-                    </div>
-                    <div className="col-sm-6">
-                      <button
-                        className="btn btn-danger col-sm-6"
-                        onClick={() => {
-                          handleDelete(uploadReport.id);
-                        }}
-                        type="button"
-                      >
-                        Delete
-                      </button>
+
+                  <td>
+                    <div className="row">
+                      <div className="col-sm-6">
+                        <a
+                          className="btn btn-primary col-sm-6"
+                          href={uploadReport.report}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          View
+                        </a>
+                      </div>
+                      <div className="col-sm-6">
+                        <button
+                          className="btn btn-danger col-sm-6"
+                          onClick={() => {
+                            handleDelete(uploadReport.id);
+                          }}
+                          type="button"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </td>
                 </tr>

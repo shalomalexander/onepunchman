@@ -234,7 +234,7 @@ const HomeScreen = () => {
         <div className="home-content-inner2-footer">
           <div className="home-content-inner2-footer-inner">
             <p className="txt-1 font-small">
-              HealHub is developed by @onepunchman Techathlon 21
+              HealHub is developed by @FrozenFireCoders
             </p>
           </div>
         </div>

@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { urlContext } from "../App";
 import registrationimg from "../assets/Images/HEALHUB-REGISTRATION.png";
+import toast from "react-hot-toast";
+import validator from "validator";
 
 const RegisterScreen = () => {
   const url = useContext(urlContext);
@@ -15,6 +17,7 @@ const RegisterScreen = () => {
     password: "",
     is_MP: false,
     is_pharma: false,
+    is_insurance: false,
   });
 
   const onChangeHandler = (event) => {
@@ -28,7 +31,12 @@ const RegisterScreen = () => {
         return { ...prevData, [name]: value };
       });
     }
-    console.log({ ...input });
+    // console.log({ ...input });
+  };
+
+  const validatePhoneNumber = (number) => {
+    const isValidPhoneNumber = validator.isMobilePhone(number);
+    return isValidPhoneNumber;
   };
 
   const handleSubmit = async (event) => {
@@ -36,6 +44,11 @@ const RegisterScreen = () => {
       event.preventDefault();
     }
     setInput(input);
+    if (!validatePhoneNumber(input.phone_number)) {
+      toast.error("Phone Number is not valid.");
+      return;
+    }
+
     await axios
       .post(url + "/api/auth/register", input, {
         headers: {
@@ -48,10 +61,13 @@ const RegisterScreen = () => {
           "phone_number",
           response.data.user["phone_number"]
         );
+        console.log("Registered");
+        history.push("/otpscreen");
       })
-      .catch((error) => console.log(error.response));
-    console.log("Registered");
-    history.push("/otpscreen");
+      .catch((error) => {
+        console.log(error.response.data["detail"]);
+        toast.error(error.response.data["detail"]);
+      });
   };
 
   return (
@@ -60,7 +76,7 @@ const RegisterScreen = () => {
         <div className="login-content-inner">
           <img className="auth-img" src={registrationimg} alt="#" />
           <div className="auth-inner">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="form-group">
               <h4 className="align-centre roboto-font">
                 <span className="material-icons">person_add </span>Registeration
               </h4>
@@ -73,6 +89,7 @@ const RegisterScreen = () => {
                   name="username"
                   onChange={onChangeHandler}
                   value={input.username}
+                  required
                 />
               </div>
 
@@ -85,6 +102,7 @@ const RegisterScreen = () => {
                   name="email"
                   onChange={onChangeHandler}
                   value={input.email}
+                  required
                 />
               </div>
 
@@ -97,6 +115,8 @@ const RegisterScreen = () => {
                   name="phone_number"
                   onChange={onChangeHandler}
                   value={input.phone_number}
+                  maxLength="10"
+                  required
                 />
               </div>
 
@@ -109,26 +129,11 @@ const RegisterScreen = () => {
                   name="password"
                   onChange={onChangeHandler}
                   value={input.password}
+                  required
                 />
               </div>
-{/* 
-              <div className="form-group">
-                <div className="row align-centre">
-                  <label className="col font-small">
-                    Want to register as Medical Practitioner?
-                  </label>
-                  <input
-                    type="checkbox"
-                    className="checkbox-container col"
-                    placeholder="Click only if you are Medical Practitioner"
-                    name="is_MP"
-                    checked={input.is_MP}
-                    onChange={onChangeHandler}
-                  />
-                </div>
-              </div> */}
 
-              <button type="submit" className="btn btn-dark btn-sm">
+              <button type="submit" className="btn btn-dark">
                 Register
               </button>
             </form>

@@ -4,6 +4,7 @@ import { loginContext, urlContext } from "../App";
 import ErrorScreen from "./ErrorScreen";
 import { useHistory } from "react-router-dom";
 import loginimg from "../assets/Images/HEALHUB-LOGIN.png";
+import toast from "react-hot-toast";
 
 const LoginScreen = () => {
   const url = useContext(urlContext);
@@ -36,7 +37,7 @@ const LoginScreen = () => {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
 
         const user = response.data.user;
         const token = response.data.token;
@@ -56,7 +57,7 @@ const LoginScreen = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        setError(true);
+        toast.error("Invalid login credentials.")
       });
   };
 
@@ -106,8 +107,8 @@ const LoginScreen = () => {
               <hr />
 
               <p>
-                By signing in you're accepting the
-                <strong>terms of service</strong>
+                By signing in you're accepting the<br/>
+                <strong> terms of service</strong>
               </p>
             </form>
           </div>

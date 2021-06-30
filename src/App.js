@@ -7,10 +7,12 @@ import React from "react";
 import AuthScreen from "./Screens/AuthScreen";
 import { Toaster } from "react-hot-toast";
 
+
 export const loginContext = React.createContext();
-//const url = "http://127.0.0.1:8000"; //Use this for local
+// const url = "http://127.0.0.1:8000"; //Use this for local
 const url = "https://shalomalexander.pythonanywhere.com"; //Use this for hosted app
 export const urlContext = React.createContext(url);
+
 
 const initialState = {
   isAuthenticated: localStorage.getItem("token") ? true : false,

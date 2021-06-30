@@ -3,9 +3,9 @@ import { loginContext, urlContext } from "../../App";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const EnrollUser = () => {
+const EnrollUser = (props) => {
   const [data, setData] = useState({
-    userId: "",
+    userId: props.location.state ? props.location.state.user_id : "",
     agentId: "",
     validTill: "",
     policyProvider: "",
@@ -24,14 +24,14 @@ const EnrollUser = () => {
     axios
       .post(url + "/api/v1/enrollinsurance/", data)
       .then((res)=>{
-          console.log(res);
+          // console.log(res);
           toast.success("Successfully Enrolled User");
       })
       .catch((error) => {
         console.log(error);
       });
 
-    console.log(data);
+    //console.log(data);
   };
 
   const handleInputChange = (event) => {

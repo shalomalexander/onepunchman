@@ -32,7 +32,7 @@ const DetailAccess = () => {
 
   const fetchUserData = async () => {
     let res = await axios.get(url + `/api/v1/PersonalInfoOfSpecificUser/${data.pid}`);
-    console.log(res);
+    // console.log(res);
     setUser(res.data);
    
   }
