@@ -57,7 +57,7 @@ const AccessById = () => {
         },
       })
       .then((response) => {
-        console.log(response);
+       
 
         if (response.status === 200) {
           // alert(response.data);
@@ -72,8 +72,6 @@ const AccessById = () => {
         // alert("No User Available for this OTP");
         toast.error("OTP is incorrect.");
       });
-
-    console.log(otp);
     
   };
 

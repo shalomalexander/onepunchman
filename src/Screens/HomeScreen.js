@@ -12,44 +12,60 @@ const HomeScreen = () => {
   const [click, setClick] = useState(false);
   const handleClick = () => {
     setClick(!click);
-  }
+  };
 
   return (
     <>
       <div className="sec-home-body-container">
         <div className="home-content-inner">
-            <div className="healhub-frontline">
-              <p className="input-row-1 bold-500">
-                HealHub <img className="homelogo" src={logo} alt="#" />
-              </p>
-              <p className="txt-1">
-                Store securely, atmost privacy: Our web based platform is an
-                Electronic Health Record Management system, where you can store
-                your health data safely.
-              </p>
-              <div className="register-home-container"> 
-                <button onClick={handleClick} className="btn btn-primary home-btn">Register</button>
-              
-                <div className={"register-dropdown" + (click ? " active" : "")}>
-                  <Link to="/register" style={{textDecoration:"none"}}>
-                    <div className="hover-li">Patient's Registration</div>
-                  </Link>
-                  <Link to="/doctorregister" style={{textDecoration:"none"}}>  
-                    <div className="hover-li">Doctor's Registration </div>
-                  </Link>  
-                  <Link to="/insuranceagentregister" style={{textDecoration:"none"}}>  
-                    <div className="hover-li">Insurance Agent's Registration </div>
-                  </Link> 
-                </div>
-              </div>  
+          <div className="healhub-frontline">
+            <p className="input-row-1 bold-500">
+              HealHub <img className="homelogo" src={logo} alt="#" />
+            </p>
+            <p className="txt-1">
+              Store securely, atmost privacy: Our web based platform is an
+              Electronic Health Record Management system, where you can store
+              your health data safely.
+            </p>
+            <div className="register-home-container">
+              <button
+                onClick={handleClick}
+                className="btn btn-primary home-btn"
+              >
+                Register
+              </button>
+
+              <div className={"register-dropdown" + (click ? " active" : "")}>
+                <Link to="/register" style={{ textDecoration: "none" }}>
+                  <div className="hover-li">Patient's Registration</div>
+                </Link>
+                <Link to="/doctorregister" style={{ textDecoration: "none" }}>
+                  <div className="hover-li">Doctor's Registration </div>
+                </Link>
+                <Link
+                  to="/insuranceagentregister"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="hover-li">
+                    Insurance Agent's Registration{" "}
+                  </div>
+                </Link>
+              </div>
             </div>
-            <img className="home-1-img" src={home} alt="#" />
+          </div>
+          <img className="home-1-img" src={home} alt="#" />
         </div>
         <div className="home-content-inner2">
           <div className="home-content-inner2-inner">
-            <div className="card text-center" style={{ width: "100%",  backgroundColor: "#212925",
-                color: "white" }}>
-            <img className="home-1-img" src={about} alt="#" />
+            <div
+              className="card text-center"
+              style={{
+                width: "100%",
+                backgroundColor: "#212925",
+                color: "white",
+              }}
+            >
+              <img className="home-1-img" src={about} alt="#" />
               <div className="card-body">
                 <h5 className="card-title">What is HealHub?</h5>
                 <p className="card-text">
@@ -65,7 +81,6 @@ const HomeScreen = () => {
                 </p>
               </div>
             </div>
-           
           </div>
         </div>
 
@@ -125,7 +140,29 @@ const HomeScreen = () => {
                 </Link>
               </div>
             </div>
-           
+            <div
+              className="card text-center"
+              style={{
+                width: "100%",
+                backgroundColor: "#212925",
+                color: "white",
+              }}
+            >
+              <div className="card-body">
+                <h5 className="card-title">Insurance Provider</h5>
+                <p className="card-text">
+                  Insurance Provider is also a stakeholder, who will have
+                  significant benefit from this platform. They will be able to
+                  verify patient’s health record with ease and will be able to
+                  enroll them with better policy's.
+                </p>
+                <Link to="/insuranceagentregister">
+                  <button className="btn btn-primary home-btn">
+                    Register as Insurance Provider
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         <div className="home-content-inner2">
@@ -135,14 +172,16 @@ const HomeScreen = () => {
             </p>
           </div>
           <div className="home-content-inner2-inner">
-           
-
             <div
               className="card text-center"
-              style={{ width: "100%", margin: "10px",  backgroundColor: "#212925",
-              color: "white" }}
+              style={{
+                width: "100%",
+                margin: "10px",
+                backgroundColor: "#212925",
+                color: "white",
+              }}
             >
-               <img className="home-1-img" src={security} alt="#" />
+              <img className="home-1-img" src={security} alt="#" />
               <div className="card-body">
                 <h5 className="card-title">How is your data secure with us?</h5>
                 <p className="card-text">
@@ -174,9 +213,8 @@ const HomeScreen = () => {
                 color: "white",
               }}
             >
-             
               <div className="card-body">
-              <img className="home-1-img" src={support} alt="#" />
+                <img className="home-1-img" src={support} alt="#" />
                 <h5 className="card-title">Found a Bug or Issue ?</h5>
                 <p className="card-text">
                   We assure customer reliability for our web portal. Support
@@ -193,8 +231,6 @@ const HomeScreen = () => {
                 </a>
               </div>
             </div>
-
-           
           </div>
         </div>
 

@@ -26,6 +26,7 @@ import EnrollUser from "../InsuranceAgent/Pages/EnrollUser";
 import EnrolledUser from "../InsuranceAgent/Pages/EnrolledUser";
 import UserRequests from "../InsuranceAgent/Pages/UserRequests";
 import PotentialBuyer from "../InsuranceAgent/Pages/PotentialBuyer";
+import AllergicInfo from "../Pages/AllergicInfo";
 
 const UserScreen = () => {
   const { dispatch } = useContext(loginContext);
@@ -33,7 +34,7 @@ const UserScreen = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = JSON.parse(localStorage.getItem("token"));
-    // console.log(user);
+    //console.log(user);
     // console.log(token);
     dispatch({
       type: "REFRESH",
@@ -56,6 +57,8 @@ const UserScreen = () => {
           <Route exact path="/enrolledpolicy" component={EnrolledPolicy} />
           <Route exact path="/insurancerequest" component={InsuranceRequest} />
           <Route exact path="/agentfinder" component={AgentFinder} />
+          <Route exact path="/allergicinfo" component={AllergicInfo} />
+          <Route exact path="/doctorslist" component={DoctorsList} />
 
           <Route exact path="/prescribe" component={Prescribe} />
           <Route exact path="/finduser" component={FindUser} />
@@ -77,7 +80,7 @@ const UserScreen = () => {
           />
           <Route exact path="/detailaccess" component={DetailAccess} />
           <Route exact path="/ddashboard" component={DDashboard} />
-          <Route exact path="/doctorslist" component={DoctorsList} />
+
           <Route exact path="/error" component={ErrorScreen} />
 
           <Route exact path="/agentdashboard" component={AgentDashboard} />

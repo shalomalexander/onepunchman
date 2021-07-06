@@ -25,7 +25,7 @@ const Insurance = () => {
 
   const toggleShowModal = () => {
     setShowModal((prevData) => !prevData);
-    console.log(showModal);
+    //console.log(showModal);
   };
 
   const handleInputChange = (event) => {

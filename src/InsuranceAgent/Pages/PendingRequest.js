@@ -10,20 +10,25 @@ const PendingRequest = () => {
     firstName: "",
   });
 
+  const [reports, setReports] = useState([]);
+
   const fetchUser = async (id) => {
     let response = await axios.get(
       url + "/api/v1/PersonalInfoOfSpecificUser/" + id
     );
-
     setUser(response.data);
+
+    let res = await axios.get(url + "/api/v1/getlabreport/" + id);
+    console.log(res.data);
+    setReports(res.data);
 
     // console.log(user);
   };
 
   const handleApprove = (id) => {
     console.log(id);
-    let patch = { 
-        is_approved: true
+    let patch = {
+      is_approved: true,
     };
 
     axios
@@ -33,13 +38,13 @@ const PendingRequest = () => {
       })
       .catch((error) => console.log(error));
 
-    window.location.reload(false) ; 
+    window.location.reload(false);
   };
 
   const handleDecline = async (id) => {
     console.log(id);
-    let patch = { 
-        is_declined: true
+    let patch = {
+      is_declined: true,
     };
 
     axios
@@ -49,14 +54,15 @@ const PendingRequest = () => {
       })
       .catch((error) => console.log(error));
 
-    window.location.reload(false) ; 
+    window.location.reload(false);
   };
 
   useEffect(() => {
     const fetchPendingRequests = async () => {
       let response = await axios.get(url + "/api/v1/patienttoagentrequest/");
+
       setPending(response.data.filter((d) => d.agentId === state.user.id));
-      //   console.log(response);
+      // console.log(response);
     };
     fetchPendingRequests();
   }, [url, state.user.id]);
@@ -74,10 +80,11 @@ const PendingRequest = () => {
           </thead>
           <tbody>
             {pending.map((data, index) => {
-              if (data.is_approved || data.is_declined) return <tr key={index}></tr>;
+              if (data.is_approved || data.is_declined)
+                return <tr key={index}></tr>;
               return (
                 <tr key={index}>
-                  <th scope="row">{index}</th>
+                  <th>{index}</th>
                   <td>{data.userId}</td>
                   <td>{data.created_on}</td>
                   <td>
@@ -118,8 +125,8 @@ const PendingRequest = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content ">
+        <div className="modal-dialog" role="document"> 
+          <div className="modal-content " >
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 User Detail
@@ -134,20 +141,20 @@ const PendingRequest = () => {
               </button>
             </div>
             <div className="modal-body  table-responsive">
-              <table className="table">
+              <table className="table table-sm">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">{user.firstName}</th>
+                    <td>{user.firstName}</td>
                     <th scope="col">Contact</th>
-                    <th scope="col">{user.mobileNumber}</th>
+                    <td>{user.mobileNumber}</td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">Gender</th>
                     <td>{user.gender}</td>
-                    <td>Email ID</td>
+                    <th>Email ID</th>
                     <td>{user.emailId}</td>
                   </tr>
                   <tr>
@@ -156,6 +163,35 @@ const PendingRequest = () => {
                     <td>{user.cityOrTown}</td>
                     <td>{user.state}</td>
                   </tr>
+                </tbody>
+              </table>
+              <table className="table table-sm">
+                <thead>
+                  <th>Title</th>
+                  <th>Created on</th>
+                  <th>Related to</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                  {reports.map((report, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{report.title}</td>
+                        <td>{report.created_on}</td>
+                        <td>{report.tag}</td>
+                        <td>
+                          <a
+                            className="btn btn-outline-primary"
+                            href={report.report}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            View
+                          </a>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

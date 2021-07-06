@@ -24,7 +24,7 @@ const Menu = () => {
 
   return (
     <>
-      <div className="sec-menu-container">
+      <div className="sec-menu-container" >
         <ul id="myDiv">
           {(() => {
             switch (userType) {
@@ -38,9 +38,10 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/ddashboard"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px" }}
+                      
                       >
-                        <span className="material-icons">home</span> Dashboard
+                        <span className="material-icons pr-3">home</span> Dashboard
                       </Link>
                     </li>
                     <li
@@ -50,9 +51,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/prescribe"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">edit_note</span>{" "}
+                        <span className="material-icons pr-3">edit_note</span>{" "}
                         Prescribe
                       </Link>
                     </li>
@@ -63,9 +64,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/finduser"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">person_search</span>{" "}
+                        <span className="material-icons pr-3">person_search</span>{" "}
                         Find User
                       </Link>
                     </li>
@@ -76,9 +77,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/prediction"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">construction</span>{" "}
+                        <span className="material-icons pr-3">construction</span>{" "}
                         Disease Prediction Tool
                       </Link>
                     </li>
@@ -89,9 +90,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/patientdetailaccess"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">verified</span> Access
+                        <span className="material-icons pr-3">verified</span> Access
                         Verification Tool
                       </Link>
                     </li>
@@ -102,9 +103,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/detailaccess"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">fact_check</span>{" "}
+                        <span className="material-icons pr-3">fact_check</span>{" "}
                         Patient Detail Access
                       </Link>
                     </li>
@@ -121,9 +122,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/agentdashboard"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">space_dashboard</span> Dashboard
+                        <span className="material-icons pr-3">space_dashboard</span> Dashboard
                       </Link>
                     </li>
                     <li
@@ -133,9 +134,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/userrequests"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">announcement</span> User Requests
+                        <span className="material-icons pr-3">announcement</span> User Requests
                       </Link>
                     </li>
                     <li
@@ -145,9 +146,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/enrolluser"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">person_add</span> Enroll User
+                        <span className="material-icons pr-3">person_add</span> Enroll User
                       </Link>
                     </li>
                     <li
@@ -157,24 +158,11 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/enrolleduser"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">people</span> Enrolled User
+                        <span className="material-icons pr-3">people</span> Enrolled User
                       </Link>
-                    </li>
-                    {/* <li
-                      className={"li-font" + ("l5" === active ? " active" : "")}
-                      onClick={() => setActive("l5")}
-                    >
-                      <Link
-                        className="txt align-centre"
-                        to="/potentialbuyer"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <span className="material-icons">person_search</span> Client Finder
-                      </Link>
-                    </li> */}
-                   
+                    </li>                 
                   </div>
                 );
 
@@ -188,9 +176,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/dashboard"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">home</span> Dashboard
+                        <span className="material-icons pr-3">home</span> Dashboard
                       </Link>
                     </li>
                     <li
@@ -200,9 +188,9 @@ const Menu = () => {
                       <Link
                         className="txt  align-centre"
                         to="/profile"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">person</span> Profile
+                        <span className="material-icons pr-3">person</span> Profile
                       </Link>
                     </li>
                     <li
@@ -212,9 +200,9 @@ const Menu = () => {
                       <Link
                         className="txt  align-centre"
                         to="/insurance"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">history_edu</span>{" "}
+                        <span className="material-icons pr-3">history_edu</span>{" "}
                         Insurance
                       </Link>
                     </li>
@@ -225,9 +213,9 @@ const Menu = () => {
                       <Link
                         className="txt  align-centre"
                         to="/prescription"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">description</span>{" "}
+                        <span className="material-icons pr-3">description</span>{" "}
                         Prescription
                       </Link>
                     </li>
@@ -238,13 +226,12 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/doctorslist"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">group</span> Doctors
+                        <span className="material-icons pr-3">group</span> Doctors
                         List
                       </Link>
                     </li>
-
                     <li
                       className={"li-font" + ("l6" === active ? " active" : "")}
                       onClick={() => setActive("l6")}
@@ -252,9 +239,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/labreport"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">receipt</span> Lab Report
+                        <span className="material-icons pr-3">receipt</span> Lab Report
                       </Link>
                     </li>
                     <li
@@ -264,9 +251,9 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/enrolledpolicy"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px" }}
                       >
-                        <span className="material-icons">view_list</span> Enrolled Policy's
+                        <span className="material-icons pr-3">view_list</span> <div>Enrolled Policy's</div>
                       </Link>
                     </li>
                     <li
@@ -276,23 +263,23 @@ const Menu = () => {
                       <Link
                         className="txt align-centre"
                         to="/insurancerequest"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", fontSize:"12px"  }}
                       >
-                        <span className="material-icons">contact_support</span> Insurance Request
+                        <span className="material-icons pr-3">contact_support</span> Insurance Request
                       </Link>
                     </li>
-                    {/* <li
+                    <li
                       className={"li-font" + ("l9" === active ? " active" : "")}
                       onClick={() => setActive("l9")}
                     >
                       <Link
                         className="txt align-centre"
-                        to="/agentfinder"
-                        style={{ textDecoration: "none" }}
+                        to="/allergicinfo"
+                        style={{ textDecoration: "none", fontSize:"12px" }}
                       >
-                        <span className="material-icons">support_agent</span> Agent Finder
+                        <span className="material-icons pr-3">coronavirus</span> Allergic Information
                       </Link>
-                    </li> */}
+                    </li>
                   </div>
                 );
 

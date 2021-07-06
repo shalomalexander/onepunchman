@@ -21,6 +21,20 @@ const ApprovedRequest = () => {
     setUser(response.data);
   };
 
+  const handleEnroll = async (id) => {
+    console.log(id);
+    let patch = {
+      is_enrolled: true,
+    };
+
+    axios
+      .patch(url + "/api/v1/patienttoagentrequest/" + id, patch)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
     const fetchPendingRequests = async () => {
       let response = await axios.get(url + "/api/v1/patienttoagentrequest/");
@@ -32,7 +46,7 @@ const ApprovedRequest = () => {
   return (
     <>
       <div className="lab-report-upload-file-container my-3 py-2  table-responsive">
-        <table className="table table-bordered">
+        <table className="table table-bordered table-sm">
           <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -42,7 +56,7 @@ const ApprovedRequest = () => {
             </tr>
           </thead>
           <tbody>
-            {pending.map((data, index) => {
+            {pending.reverse().map((data, index) => {
               if (data.is_approved)
                 return (
                   <tr key={index}>
@@ -59,17 +73,24 @@ const ApprovedRequest = () => {
                         >
                           View User
                         </div>
-                        <div
-                          className="btn btn-outline-primary col"
-                          onClick={() =>
-                            history.push({
-                              pathname: "/enrolluser",
-                              state: { user_id: data.userId },
-                            })
-                          }
-                        >
-                          Enroll
-                        </div>
+                        {data.is_enrolled ? (
+                          <div className="btn btn-outline-success col">
+                            Enrolled
+                          </div>
+                        ) : (
+                          <div
+                            className="btn btn-outline-primary col"
+                            onClick={() => {
+                              handleEnroll(data.id);
+                              history.push({
+                                pathname: "/enrolluser",
+                                state: { user_id: data.userId },
+                              });
+                            }}
+                          >
+                            Enroll
+                          </div>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -103,7 +124,7 @@ const ApprovedRequest = () => {
               </button>
             </div>
             <div className="modal-body  table-responsive">
-              <table className="table">
+              <table className="table table-sm">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>

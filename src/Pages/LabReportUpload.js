@@ -78,6 +78,7 @@ const LabReportUpload = () => {
       let response = await axios.get(
         url + "/api/v1/getlabreport/" + state.user.id
       );
+      //console.log(response.data);
       setUploadReports(response.data);
     };
     fetchData();
@@ -101,7 +102,7 @@ const LabReportUpload = () => {
         </div>
       </div>
       <hr></hr>
-      
+
       <div className="lab-report-upload-file-container my-3 py-2  table-responsive">
         <table className="table table-bordered">
           <thead className="thead-dark">
@@ -128,7 +129,7 @@ const LabReportUpload = () => {
                     <div className="row">
                       <div className="col-sm-6">
                         <a
-                          className="btn btn-primary col-sm-6"
+                          className="btn btn-primary"
                           href={uploadReport.report}
                           target="_blank"
                           rel="noreferrer"
@@ -138,7 +139,7 @@ const LabReportUpload = () => {
                       </div>
                       <div className="col-sm-6">
                         <button
-                          className="btn btn-danger col-sm-6"
+                          className="btn btn-danger"
                           onClick={() => {
                             handleDelete(uploadReport.id);
                           }}
@@ -155,6 +156,7 @@ const LabReportUpload = () => {
           </tbody>
         </table>
       </div>
+
       <div
         className="modal fade "
         id="staticBackdrop"

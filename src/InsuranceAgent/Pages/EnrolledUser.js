@@ -107,7 +107,7 @@ const EnrolledUsers = () => {
                 </button>
               </div>
               <div className="modal-body  table-responsive">
-                <table className="table">
+                <table className="table  table-sm">
                   <thead>
                     <tr>
                       <th scope="col">Name</th>

@@ -14,6 +14,7 @@ const DetailAccess = () => {
   });
 
   const [pres, setPres] = useState([]);
+  const [reports, setReports] = useState([]);
   const [user, setUser] = useState({});
 
   const handleInputChange = (event) => {
@@ -31,11 +32,12 @@ const DetailAccess = () => {
   };
 
   const fetchUserData = async () => {
-    let res = await axios.get(url + `/api/v1/PersonalInfoOfSpecificUser/${data.pid}`);
+    let res = await axios.get(
+      url + `/api/v1/PersonalInfoOfSpecificUser/${data.pid}`
+    );
     // console.log(res);
     setUser(res.data);
-   
-  }
+  };
 
   const handleSubmit = async (event) => {
     if (event) {
@@ -43,21 +45,26 @@ const DetailAccess = () => {
     }
 
     // setPres([]);
-    toast.loading("Fetching Data!",{duration: 1000});
+    toast.loading("Fetching Data!", { duration: 1000 });
 
     await axios
-      .post(url + "/api/v1/accessprescription/", data, {
+      .post(url + "/api/v1/accessdetail/", data, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        //   console.log(response);
+      
         if (response.data !== "No Access") {
           fetchUserData();
-          setPres(response.data);
+        
+          response.data["prescriptions"]
+            ? setPres(response.data["prescriptions"])
+            : setPres([]);
+          response.data["reports"]
+            ? setReports(response.data["reports"])
+            : setReports([]);
         } else {
-          setPres([]);
           // alert("You dont have access to this users data.");
           toast.error("You dont have access to this users data.");
           return;
@@ -67,11 +74,10 @@ const DetailAccess = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        console.log(pres);
       });
   };
 
-  useEffect(()=>{},[]);
+  useEffect(() => {}, []);
   return (
     <>
       <div className="content-inner">
@@ -107,31 +113,77 @@ const DetailAccess = () => {
           </div>
         </form>
         <hr />
-        <div className="scrollable-container">
-            {pres.length !== 0 ? (
-              
-                <div className="">
+        <div>
+          {pres.length !== 0 || reports.length !== 0 ? (
+            <div className="">
+              <h3>Patient Detail</h3>
+              <AccessUserCard value={user} />
 
-                  <h3>Patient Detail</h3>
-                  <AccessUserCard value={user}/>
-
+              {pres.length === 0 ? (
+                <></>
+              ) : (
+                <>
                   <h3>User Prescription</h3>
                   <hr />
                   {pres.map((p, index) => {
                     return <PrescriptionCard data={p} key={index} id={index} />;
                   })}
+                </>
+              )}
 
+              {reports.length === 0 ? (
+                <></>
+              ) : (
+                <div className="table-responsive">
+                  
+                  <h3> Lab Reports </h3>
+                  <table className="table table-bordered">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Report Status</th>
+                        <th scope="col">Created on</th>
+                        <th scope="col">Related to</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {reports.map((uploadReport, index) => {
+                        return (
+                          <tr key={index}>
+                            <th scope="row">{index}</th>
+                            <td>{uploadReport.title}</td>
+                            <td>{uploadReport.report_status}</td>
+                            <td>{uploadReport.created_on}</td>
+                            <td>{uploadReport.tag}</td>
+
+                            <td>
+                              <a
+                                className="btn btn-outline-primary"
+                                href={uploadReport.report}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                View
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
-            
-            ) : (
-              <div className="profile-inner">
-                <p>
-                  <strong>Note:</strong> Currently you have not searched any
-                  Patient ID/User ID
-                </p>
-              </div>
-            )}
-         
+              )}
+            </div>
+          ) : (
+            <div className="profile-inner">
+              <p>
+                <strong>Note:</strong> Currently you have not searched any
+                Patient ID/User ID
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

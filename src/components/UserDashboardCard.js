@@ -12,7 +12,7 @@ const UserDashboardCard = () => {
         <>
         <div>
             <table className="table table-bordered">
-               <thead className="">
+               <thead  className="table-dark">
                    <tr>
                        <th>Patient ID</th>
                        <th>Username</th>

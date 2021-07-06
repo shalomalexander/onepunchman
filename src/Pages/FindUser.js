@@ -20,7 +20,7 @@ const FindUser = () => {
       let temp = res.data
         .map((item) => item)
         .filter((mp) => {
-          return mp.is_MP === false;
+          return mp.is_MP === false && mp.is_insurance===false && mp.id !==1;
         });
       setNames(temp);
     };

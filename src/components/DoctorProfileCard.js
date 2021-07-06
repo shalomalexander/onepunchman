@@ -60,16 +60,18 @@ const DoctorProfileCard = () => {
         <DProfileForm showModal={showModal} setShowModal={setShowModal} uploadedData={data}/>
         <table className="table">
           <thead>
-            <tr>
+            <tr className="table-dark">
               <th scope="col">
-                <strong style={{ fontSize: "25px", color: "gray" }}>
+                <strong style={{ fontSize: "25px"}}>
                   Profile Information
                 </strong>
               </th>
               <th scope="col">
+                <div style={{ width:"100px" }}>
                 <button onClick={toggleShowModal} className="btn btn-primary">
                   Edit
                 </button>
+                </div>
               </th>
             </tr>
           </thead>

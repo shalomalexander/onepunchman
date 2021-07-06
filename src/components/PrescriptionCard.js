@@ -15,7 +15,7 @@ const PrescriptionCard = (props) => {
 
   return (
     <>
-      <div className="table-inner">
+      <div className="">
         <table
           className="table table-bordered table-success"
           id="invoice-table"

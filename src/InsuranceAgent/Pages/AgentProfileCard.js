@@ -45,30 +45,42 @@ const AgentProfileCard = () => {
   return (
     <>
       <div className="detail-container dark-card">
-        <div className="inside-container row">
-          <div className="col-9">
-            <h3>Profile Information</h3>
-          </div>
-          <div className="col-3">
-            {isEmpty(data) ? (
-              <>
-                <button onClick={toggleShowModal} className="btn btn-primary">
-                  Add
-                </button>
-              </>
-            ) : (
-              <>
-                <button onClick={toggleShowModal} className="btn btn-primary">
-                  Edit
-                </button>
-              </>
-            )}
-          </div>
-        </div>
         <hr />
-        <AgentProfileForm showModal={showModal} setShowModal={setShowModal} uploadedData={data} />
+        <AgentProfileForm
+          showModal={showModal}
+          setShowModal={setShowModal}
+          uploadedData={data}
+        />
         <table className="table">
           <thead>
+            <tr className="table-dark">
+              <th>
+                <h3>Profile Information</h3>
+              </th>
+              <th>
+                <div style={{width:"100px"}}>
+                {isEmpty(data) ? (
+                  <>
+                    <button
+                      onClick={toggleShowModal}
+                      className="btn btn-primary"
+                    >
+                      Add
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={toggleShowModal}
+                      className="btn btn-primary"
+                    >
+                      Edit
+                    </button>
+                  </>
+                )}
+                </div>
+              </th>
+            </tr>
             <tr>
               <th scope="col">Username</th>
               <th scope="col">{data["name"]}</th>

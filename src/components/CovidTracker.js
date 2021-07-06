@@ -10,6 +10,11 @@ const CovidTracker = () => {
     lastUpdate: "",
   });
 
+  const numberWithCommas = (x) => {
+    if(x) return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return "";
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
@@ -34,16 +39,16 @@ const CovidTracker = () => {
         <strong style={{ fontSize: "25px", color: "gray" }}>
           India Covid Statistics
         </strong>
-        <div className="covid-tracker-wrapper">
+        <div className="covid-tracker-wrapper  row">
           <div
-            className="covid-tracker-card"
+            className="covid-tracker-card col-sm-4"
             style={{ borderBottom: "#8edee6 10px solid" }}
           >
             <strong style={{ fontSize: "20px", color: "gray" }}>
               Infected
             </strong>
             <hr />
-            <strong>{data.confirmed.value}</strong>
+            <strong>{numberWithCommas(data.confirmed.value)}</strong>
             <br></br>
             {/* {data.lastUpdate} */}
             {new Date(data.lastUpdate).toDateString()}
@@ -55,14 +60,14 @@ const CovidTracker = () => {
           </div>
 
           <div
-            className="covid-tracker-card"
+            className="covid-tracker-card col-sm-4"
             style={{ borderBottom: "#add68d 10px solid" }}
           >
             <strong style={{ fontSize: "20px", color: "gray" }}>
               Recovered
             </strong>
             <hr />
-            <strong>{data.recovered.value}</strong>
+            <strong>{numberWithCommas(data.recovered.value)}</strong>
             <br></br>
             {new Date(data.lastUpdate).toDateString()}
             <br></br>
@@ -73,12 +78,12 @@ const CovidTracker = () => {
           </div>
 
           <div
-            className="covid-tracker-card"
+            className="covid-tracker-card col-sm-4"
             style={{ borderBottom: "#e68e8e 10px solid" }}
           >
             <strong style={{ fontSize: "20px", color: "gray" }}>Deaths</strong>
             <hr />
-            <strong>{data.deaths.value}</strong>
+            <strong>{numberWithCommas(data.deaths.value)}</strong>
             <br></br>
             {new Date(data.lastUpdate).toDateString()}
             <br></br>

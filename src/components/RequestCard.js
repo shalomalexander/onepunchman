@@ -18,7 +18,7 @@ const RequestCard = (props) => {
     pid: "",
     did: "",
     prescription_field: false,
-    blood_pressure_field: false,
+    lab_report_field: false,
   });
 
   const onChangeHandler = (event) => {
@@ -27,16 +27,26 @@ const RequestCard = (props) => {
       setPfield((prevData) => {
         return { ...prevData, [name]: event.target.checked };
       });
+      setData((prevData) => {
+        return {
+          ...prevData,
+          prescription_field: event.target.checked,
+          pid: id,
+          did: did,
+        };
+      });
     }
 
-    setData((prevData) => {
-      return {
-        ...prevData,
-        prescription_field: event.target.checked,
-        pid: id,
-        did: did,
-      };
-    });
+    if (name === "lab_report_field") {
+      setData((prevData) => {
+        return {
+          ...prevData,
+          lab_report_field: event.target.checked,
+          pid: id,
+          did: did,
+        };
+      });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -46,10 +56,11 @@ const RequestCard = (props) => {
     localStorage.setItem("pid", id);
     console.log(data);
 
-    if(!data.prescription_field) {
-      toast.error("Kindly select a field.")
+    if (!data.prescription_field && !data.lab_report_field) {
+      toast.error("Kindly select a field.");
       return;
     }
+
 
     axios
       .post(url + "/api/v1/accessverification/", data, {
@@ -58,7 +69,6 @@ const RequestCard = (props) => {
         },
       })
       .then((response) => {
-        console.log(response);
         toast.success(`One Time Password sending to:- ${phone_number}`, {
           duration: 8000,
         });
@@ -98,6 +108,19 @@ const RequestCard = (props) => {
                   placeholder=""
                   name="prescription_field"
                   checked={pField.prescription_field}
+                  onChange={onChangeHandler}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th className="w-25">Lab Report Field</th>
+              <td>
+                <input
+                  type="checkbox"
+                  className="checkbox-container  col-1"
+                  placeholder=""
+                  name="lab_report_field"
+                  checked={data.lab_report_field}
                   onChange={onChangeHandler}
                 />
               </td>

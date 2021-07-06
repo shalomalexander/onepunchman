@@ -33,7 +33,7 @@ const InsuranceRequest = () => {
 
       setRequest({});
 
-      // console.log(request);
+      console.log(request);
     };
 
     if (request.userId === state.user.id) {
@@ -50,30 +50,33 @@ const InsuranceRequest = () => {
   useEffect(() => {
     const fetchAgents = async () => {
       let response = await axios.get(url + "/api/v1/insuranceagentlist/");
-      // console.log(response);
+      //console.log(response);
       setAgents(response.data);
     };
 
     const fetchPendingRequests = async () => {
       let response = await axios.get(url + "/api/v1/patienttoagentrequest/");
+      //console.log(response);
       setPending(response.data);
+
+      let temp = [];
+      for (let i = 0; i < response.data.length; i++) {
+        if (!response.data[i].is_approved && !response.data[i].is_declined) {
+          temp.push(response.data[i].agentId);
+        }
+      }
+
+      setAgentIds((d) => [...d, parseInt(temp)]);
+
     };
 
     fetchAgents();
     fetchPendingRequests();
-    let temp = [];
-    for(let i = 0; i < pending.length; i++) {
-      if(!pending[i].is_approved &&  !pending[i].is_declined) {
-        temp.push(pending[i].agentId);
-      }
-    }
-  
-    setAgentIds((d) => [...d, parseInt(temp)]);
 
     return () => {
       setAgentIds([]); // This worked for me
     };
-  }, [url, pending]);
+  }, [url]);
 
   return (
     <>
@@ -140,7 +143,7 @@ const InsuranceRequest = () => {
               </tr>
             </thead>
             <tbody>
-              {pending.map((data, index) => {
+              {pending.reverse().map((data, index) => {
                 return (
                   <tr key={index}>
                     <th scope="row">{index}</th>
@@ -148,11 +151,11 @@ const InsuranceRequest = () => {
                     <td>{data.created_on}</td>
                     <td>
                       {data.is_approved ? (
-                        <div className="btn btn-success">Approved</div>
+                        <div className="btn btn-outline-success" style={{borderRadius:"50px"}}>Approved</div>
                       ) : data.is_declined ? (
-                        <div className="btn btn-danger"> Declined</div>
+                        <div className="btn btn-outline-danger" style={{borderRadius:"50px"}}> Declined</div>
                       ) : (
-                        <div className="btn btn-warning">Pending</div>
+                        <div className="btn btn-warning" style={{borderRadius:"50px"}}>Pending</div>
                       )}
                     </td>
                   </tr>
