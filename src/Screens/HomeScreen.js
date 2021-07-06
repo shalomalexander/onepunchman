@@ -3,7 +3,7 @@ import home from "../assets/SVG/HEALHUB-HOME.svg";
 import about from "../assets/SVG/HEALHUB-ABOUT.svg";
 import support from "../assets/SVG/HEALHUB-SUPPORT.svg";
 import security from "../assets/SVG/HEALHUB-SECURITY.svg";
-import qrcode from "../assets/Images/HEALHUB-QRCODE.png";
+import qrcode from "../assets/SVG/HEALHUB-QR-CODE.svg";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
