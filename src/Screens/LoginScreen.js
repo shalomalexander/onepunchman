@@ -57,7 +57,7 @@ const LoginScreen = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        toast.error("Invalid login credentials.")
+        toast.error("Invalid Login Credentials.")
       });
   };
 

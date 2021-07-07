@@ -30,7 +30,7 @@ const Navbar = () => {
         let response = await axios.get(
           url + "/api/v1/PersonalInfoOfSpecificUser/" + state.user.id
         );
-        console.log(response.data);
+        //console.log(response.data);
         setProfile(response.data.profilePicture);
       }
     };
