@@ -54,10 +54,9 @@ const DetailAccess = () => {
         },
       })
       .then((response) => {
-      
         if (response.data !== "No Access") {
           fetchUserData();
-        
+
           response.data["prescriptions"]
             ? setPres(response.data["prescriptions"])
             : setPres([]);
@@ -135,7 +134,6 @@ const DetailAccess = () => {
                 <></>
               ) : (
                 <div className="table-responsive">
-                  
                   <h3> Lab Reports </h3>
                   <table className="table table-bordered">
                     <thead className="thead-dark">
@@ -150,6 +148,7 @@ const DetailAccess = () => {
                     </thead>
                     <tbody>
                       {reports.map((uploadReport, index) => {
+                        if(!uploadReport.is_visible) return <></>
                         return (
                           <tr key={index}>
                             <th scope="row">{index}</th>
@@ -178,10 +177,10 @@ const DetailAccess = () => {
             </div>
           ) : (
             <div className="profile-inner">
-              <p>
+              <div className="alert alert-warning" role="alert">
                 <strong>Note:</strong> Currently you have not searched any
                 Patient ID/User ID
-              </p>
+              </div>
             </div>
           )}
         </div>

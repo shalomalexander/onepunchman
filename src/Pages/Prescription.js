@@ -37,14 +37,16 @@ const Prescription = () => {
 
   return (
     <>
-      <div className="content-inner" id="invoice">
+      <div className="content-inner" id="yes-print">
         <div className="align-centre">
           <div className="col">
             <p className="bold-300">Medical Prescriptions</p>
+           
           </div>
+          
         </div>
         <hr />
-        <div className="">
+        <div className="" id="yes-print">
           {prescriptions.length === 0 ? (
             <>
               <div className="no-data-wrapper">
@@ -54,7 +56,7 @@ const Prescription = () => {
           ) : (
             prescriptions.map((value, index) => {
               return (
-                <PrescriptionCard data={value} key={index} id={value.id} />
+                <PrescriptionCard data={value} key={index} id={value.id}  />
               );
             })
           )}

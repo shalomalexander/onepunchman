@@ -61,7 +61,6 @@ const RegisterScreen = () => {
           "phone_number",
           response.data.user["phone_number"]
         );
-        console.log("Registered");
         history.push("/otpscreen");
       })
       .catch((error) => {

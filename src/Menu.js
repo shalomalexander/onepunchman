@@ -24,7 +24,7 @@ const Menu = () => {
 
   return (
     <>
-      <div className="sec-menu-container" >
+      <div className="sec-menu-container"  id="no-print">
         <ul id="myDiv">
           {(() => {
             switch (userType) {

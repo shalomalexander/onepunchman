@@ -54,8 +54,9 @@ const Prescribe = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.request._response);
-        toast.error("This didn't work");
+        console.log(error.response);
+        // toast.error(error.response);
+        toast.error("The prescription couldn't be uploaded");
       });
   };
 

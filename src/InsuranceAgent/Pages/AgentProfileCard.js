@@ -34,6 +34,7 @@ const AgentProfileCard = () => {
             },
           }
         );
+     
         setData(response.data);
       } catch (err) {
         console.log(err.response);
@@ -44,8 +45,7 @@ const AgentProfileCard = () => {
 
   return (
     <>
-      <div className="detail-container dark-card">
-        <hr />
+      <div className="">
         <AgentProfileForm
           showModal={showModal}
           setShowModal={setShowModal}

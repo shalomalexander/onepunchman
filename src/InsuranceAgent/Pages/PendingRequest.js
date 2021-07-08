@@ -19,7 +19,7 @@ const PendingRequest = () => {
     setUser(response.data);
 
     let res = await axios.get(url + "/api/v1/getlabreport/" + id);
-    console.log(res.data);
+    //console.log(res.data);
     setReports(res.data);
 
     // console.log(user);
@@ -125,8 +125,8 @@ const PendingRequest = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document"> 
-          <div className="modal-content " >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content ">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 User Detail
@@ -167,13 +167,16 @@ const PendingRequest = () => {
               </table>
               <table className="table table-sm">
                 <thead>
-                  <th>Title</th>
-                  <th>Created on</th>
-                  <th>Related to</th>
-                  <th>Action</th>
+                  <tr>
+                    <th>Title</th>
+                    <th>Created on</th>
+                    <th>Related to</th>
+                    <th>Action</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {reports.map((report, index) => {
+                    if(!report.is_visible) return <tr key={index}></tr>
                     return (
                       <tr key={index}>
                         <td>{report.title}</td>

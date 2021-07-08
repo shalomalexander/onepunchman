@@ -32,6 +32,7 @@ const InsuranceRequest = () => {
         .catch((error) => console.log(error.response));
 
       setRequest({});
+   
 
       console.log(request);
     };
@@ -43,6 +44,8 @@ const InsuranceRequest = () => {
         )
       ) {
         postRequest();
+       
+        
       }
     }
   }, [request, state.user.id, url]);
@@ -51,7 +54,7 @@ const InsuranceRequest = () => {
     const fetchAgents = async () => {
       let response = await axios.get(url + "/api/v1/insuranceagentlist/");
       //console.log(response);
-      setAgents(response.data);
+      setAgents(response.data.filter(data => {return data["activeIndicator"].toString() === "Y"}));
     };
 
     const fetchPendingRequests = async () => {

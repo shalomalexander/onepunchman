@@ -50,8 +50,10 @@ const DProfileCard = () => {
       } catch (err) {
         console.log(err.response);
       };
+     
     };
     fetchData();
+
   },[url, state]);
 
   return (

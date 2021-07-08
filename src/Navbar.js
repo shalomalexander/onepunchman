@@ -62,7 +62,7 @@ const Navbar = () => {
               <h6 className="align-centre poppins-font logo">
                 <span className="material-icons">health_and_safety</span>HealHub
               </h6>
-              <div className="burger-menu-list">
+              <div className="burger-menu-list"   id="no-print">
                 <button
                   onClick={() => setMenu(!menu)}
                   className="burger-menu-button"
@@ -252,7 +252,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="nav-list">
+        <div className="nav-list" id="no-print">
           <ul>
             {state.isAuthenticated ? (
               <>

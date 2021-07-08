@@ -73,6 +73,24 @@ const LabReportUpload = () => {
     window.location.reload(false);
   };
 
+  const handleVisibility = async (id, is_visible) => {
+    let data = {
+      is_visible: !is_visible,
+    };
+
+    await axios
+      .patch(url + "/api/v1/labreportdetail/" + id, data)
+      .then((res) => {
+        console.log(res);
+        toast.success("Visibility is updated");
+        setUploadReports([]);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       let response = await axios.get(
@@ -82,7 +100,7 @@ const LabReportUpload = () => {
       setUploadReports(response.data);
     };
     fetchData();
-  }, [state, url]);
+  }, [state, url, uploadReports]);
 
   return (
     <div className="content-inner">
@@ -112,6 +130,7 @@ const LabReportUpload = () => {
               <th scope="col">Report Status</th>
               <th scope="col">Created on</th>
               <th scope="col">Related to</th>
+              <th scope="col"> Visibility </th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -124,7 +143,25 @@ const LabReportUpload = () => {
                   <td>{uploadReport.report_status}</td>
                   <td>{uploadReport.created_on}</td>
                   <td>{uploadReport.tag}</td>
-
+                  <td>
+                    {uploadReport.is_visible ? (
+                      <div
+                        className="btn btn-outline-success"
+                        type="button"
+                        onClick={() => handleVisibility(uploadReport.id, true)}
+                      >
+                        Visible
+                      </div>
+                    ) : (
+                      <div
+                        className="btn btn-outline-secondary"
+                        type="button"
+                        onClick={() => handleVisibility(uploadReport.id, false)}
+                      >
+                        Hidden
+                      </div>
+                    )}
+                  </td>
                   <td>
                     <div className="row">
                       <div className="col-sm-6">
