@@ -43,6 +43,7 @@ const Prediction = () => {
     { label: "Dark Urine", value: "dark_urine" },
     { label: "Nausea", value: "nausea" },
     { label: "Loss Of Appetite", value: "loss_of_appetite" },
+    { label: "Loss Of Taste", value: "loss_of_taste" },
     { label: "Pain Behind The Eyes", value: "pain_behind_the_eyes" },
     { label: "Back Pain", value: "back_pain" },
     { label: "Constipation", value: "constipation" },
@@ -198,6 +199,7 @@ const Prediction = () => {
   };
 
   useEffect(() => {}, [diseases]);
+  const colors = ['#FB3640', '#FF8042','#FFBB28', '#00C49F', '#0088FE'];
 
   return (
     <>
@@ -303,7 +305,7 @@ const Prediction = () => {
 
                   {diseases.map((disease, index) => (
                     <div className="input-row">
-                      <div key={index} className="col li-list">
+                      <div key={index} className="col li-list" style={{ color: colors[index] }}>
                         {disease}
                       </div>
                     </div>
