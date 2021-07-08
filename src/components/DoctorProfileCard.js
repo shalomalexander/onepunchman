@@ -35,7 +35,7 @@ const DoctorProfileCard = () => {
             },
           }
         );
-        console.log(response.data);
+        //console.log(response.data);
         setData((prevData) => {
           return {
             ...prevData,

@@ -60,16 +60,21 @@ const InsuranceRequest = () => {
     const fetchPendingRequests = async () => {
       let response = await axios.get(url + "/api/v1/patienttoagentrequest/");
       //console.log(response);
-      setPending(response.data);
+      setPending(response.data.filter(data => data.userId === state.user.id));
+
+      response = response.data.filter(data => data.userId === state.user.id);
 
       let temp = [];
-      for (let i = 0; i < response.data.length; i++) {
-        if (!response.data[i].is_approved && !response.data[i].is_declined) {
-          temp.push(response.data[i].agentId);
+      if(response) {
+        for (let i = 0; i < response.length; i++) {
+          if (!response[i].is_approved && !response[i].is_declined) {
+            temp.push(response[i].agentId);
+          }
         }
+        //console.log(temp);
+        setAgentIds((d) => [...d, parseInt(temp)]);
       }
-
-      setAgentIds((d) => [...d, parseInt(temp)]);
+      
 
     };
 
@@ -79,7 +84,7 @@ const InsuranceRequest = () => {
     return () => {
       setAgentIds([]); // This worked for me
     };
-  }, [url]);
+  }, [url, state]);
 
   return (
     <>
